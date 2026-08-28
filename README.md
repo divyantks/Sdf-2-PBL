@@ -1,6 +1,6 @@
 # 📚 Library Management System
 
-A simple **console-based Library Management System written in C++**. The project demonstrates core Object-Oriented Programming concepts along with file handling for storing library data.
+A simple **console-based Library Management System developed in C++** using Object-Oriented Programming concepts.
 
 ## ✨ Features
 
@@ -10,7 +10,7 @@ A simple **console-based Library Management System written in C++**. The project
 * Issue a Book
 * Return a Book
 * Search for an item by ID
-* Save and load data using `data.txt`
+* Save and load library data
 * Reference Books cannot be issued
 
 ## 🧠 Concepts Used
@@ -23,20 +23,37 @@ A simple **console-based Library Management System written in C++**. The project
 * Virtual Functions
 * Constructors & Destructors
 * STL `vector`
-* File Handling (`ifstream`, `ofstream`)
+* File Handling
 * Dynamic Memory Allocation
 
-## 📁 File
+## 🏗️ Class Structure
+
+```text
+              LibraryItem
+               /       \
+              /         \
+           Book     ReferenceBook
+
+                Library
+                   |
+                   +-- vector<LibraryItem*>
+```
+
+`LibraryItem` is an abstract base class. `Book` and `ReferenceBook` inherit from it and implement their own behavior.
+
+The `Library` class manages all library items using a `vector` of `LibraryItem` pointers.
+
+## 📁 Project File
 
 ```text
 Library.cpp
 ```
 
-The program automatically creates/updates `data.txt` to store library records.
+The program uses `data.txt` for data persistence. **This file is generated automatically by the program when it saves data and does not need to be present in the repository beforehand.**
 
 ## ▶️ How to Run
 
-Compile using any C++ compiler:
+Compile the C++ file using `g++`:
 
 ```bash
 g++ Library.cpp -o Library
@@ -67,30 +84,11 @@ Library.exe
 7.Exit
 ```
 
-## 🏗️ Class Structure
-
-```text
-          LibraryItem
-           /       \
-          /         \
-       Book     ReferenceBook
-
-             Library
-                |
-                └── vector<LibraryItem*>
-```
-
-`LibraryItem` acts as the abstract base class, while `Book` and `ReferenceBook` provide their own implementations of operations such as displaying, issuing, returning, and saving data.
-
 ## 💾 Data Persistence
 
-Library information is stored in:
+The program stores library records in `data.txt`.
 
-```text
-data.txt
-```
-
-The program loads existing records when it starts and saves changes whenever items are added, issued, or returned.
+When the program starts, it loads previously saved records. Changes made through adding, issuing, or returning items are automatically saved.
 
 ## 👨‍💻 Author
 
